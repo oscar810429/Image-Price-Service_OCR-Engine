@@ -1,0 +1,36 @@
+ Price Server(360buy,newegg,suning,other) For README
+ owner:songfu.zhang@gmail.com/tony.zhang
+
+
+Dependencies:
+
+-- Python Image Library http://effbot.org/downloads/Imaging-1.1.7.tar.gz
+-- Python > 2.5
+-- Quixote Web WrokFrame http://www.quixote.ca/releases/Quixote-2.7.tar.gz 
+-- tesseract  OCR Engine http://tesseract-ocr.googlecode.com/files/tesseract-3.00.tar.gz
+     -- eng.traineddata http://tesseract-ocr.googlecode.com/files/eng.traineddata.gz
+     -- chi_tra.traineddata http://tesseract-ocr.googlecode.com/files/chi_tra.traineddata.gz
+     -- chi_sim.traineddata http://tesseract-ocr.googlecode.com/files/chi_sim.traineddata.gz
+     
+install:
+
+> cd ../Imaging-1.1.7
+> python setup.py install
+> cd ../Quixote-2.7
+> python setup.py install
+> cd ../tesseract-3.00
+> ./configure --prefix=/usr/local/tesseract && make && make install
+> gunzip eng.traineddata.gz/ gunzip chi_tra.traineddata.gz / gunzip chi_sim.traineddata.gz
+> cp eng.traineddata chi_tra.traineddata chi_sim.traineddata /usr/local/tesseract/share/tessdata/
+
+install ok.
+
+run app:
+
+modify for daemon.py
+
+run(create_publisher, host='192.168.X.X', port=X)
+
+> python daemon.py start|stop
+
+run app ok. 
